@@ -2,8 +2,8 @@
 
 # Налаштування змінних
 BACKUP_DIR="/var/backups/mailcow"                # Каталог для збереження резервних копій Mailcow
-S3_REMOTE="s3-backup:maicow-backet-buckup"      # Ім'я віддаленого S3 сховища в rclone
-DATE=$(date +%F-%H-%M-%S)                         # Поточна дата у форматі YYYY-MM-DD-HH-MM-SS
+S3_REMOTE="s3-backup:maicow-backet-buckup"       # Ім'я віддаленого S3 сховища в rclone
+DATE=$(date +%F-%H-%M-%S)                        # Поточна дата у форматі YYYY-MM-DD-HH-MM-SS
 ARCHIVE_NAME="mailcow-$DATE.tar.gz"              # Ім'я архіву
 LOG_FILE="/var/log/mailcow-backup.log"           # Лог-файл для запису подій
 
@@ -12,7 +12,6 @@ if ! command -v rclone &> /dev/null; then
     echo "[$(date +'%Y-%m-%d %H:%M:%S')] Помилка: rclone не встановлений!" | tee -a "$LOG_FILE"
     exit 1
 fi
-
 # Перевірка вільного місця на диску
 FREE_SPACE=$(df "$BACKUP_DIR" | awk 'NR==2 {print $4}')
 if [[ $FREE_SPACE -lt 10485760 ]]; then  # 10GB у блоках 1K
