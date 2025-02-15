@@ -1,12 +1,17 @@
 #!/bin/bash
 
-# Налаштування змінних
-BACKUP_DIR="/var/backups/mailcow"                # Каталог для збереження резервних копій Mailcow
-S3_REMOTE="s3-backup:maicow-backet-buckup"      # Ім'я віддаленого S3 сховища в rclone
-DATE=$(date +%F-%H-%M-%S)                         # Поточна дата у форматі YYYY-MM-DD-HH-MM-SS
-ARCHIVE_NAME="mailcow-$DATE.tar.gz"              # Ім'я архіву
-LOG_FILE="/var/log/mailcow-backup.log"           # Лог-файл для запису подій
-LOCK_FILE="/tmp/mailcow-backup.lock"             # Файл блокування для уникнення одночасного запуску
+# Каталог для збереження резервних копій Mailcow
+BACKUP_DIR="/var/backups/mailcow"
+# Ім'я віддаленого S3 сховища в rclone
+S3_REMOTE="s3-backup:maicow-backet-buckup"
+# Поточна дата у форматі YYYY-MM-DD-HH-MM-SS		
+DATE=$(date +%F-%H-%M-%S)
+# Ім'я архіву
+ARCHIVE_NAME="mailcow-$DATE.tar.gz"
+# Лог-файл для запису подій
+LOG_FILE="/var/log/mailcow-buckup/mailcow-backup.log"
+# Файл блокування для уникнення одночасного запуску
+LOCK_FILE="/tmp/mailcow-backup.lock"
 
 # Функція логування
 log() {
